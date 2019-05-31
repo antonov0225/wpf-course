@@ -17,4 +17,9 @@
     <Color x:Key="ForegroundLight">#ffffff</Color>
     <SolidColorBrush x:Key="ForegroundLightBrush" Color="{StaticResource ForegroundLight}"/>
 
+    <Color x:Key="CaptionShadow">#7FE2BA4A</Color>
+    <SolidColorBrush x:Key="CaptionShadowBrush" Color="{StaticResource CaptionShadow}"/>
+    
+    
+
 </ResourceDictionary>

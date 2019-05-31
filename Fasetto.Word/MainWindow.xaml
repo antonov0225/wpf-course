@@ -20,6 +20,11 @@
                         <Border Padding="{Binding OuterMarginThickness, FallbackValue=10}">
                             <!--Main window outline-->
                             <Grid>
+                                <!--Opacity mask for corner on grid-->
+                                <Border x:Name="Container"
+                                        Background="{StaticResource BackgroundLightBrush}"
+                                        CornerRadius="{Binding WindowCornerRadius, FallbackValue=10}"
+                                        />
                                 <!--Window border and dropshadow-->
                                 <Border CornerRadius="{Binding WindowCornerRadius, FallbackValue=10}"
                                         Background="{Binding ForegroundLightBrush, FallbackValue=white}">
@@ -29,6 +34,10 @@
                                 </Border>
                                 <!--The main window content-->
                                 <Grid>
+                                    <!--Corner clipping-->
+                                    <Grid.OpacityMask>
+                                        <VisualBrush Visual="{Binding ElementName=Container}"/>
+                                    </Grid.OpacityMask>
                                     <Grid.RowDefinitions>
                                         <!--Caption bar-->
                                         <RowDefinition Height="{Binding TitleHeight, FallbackValue=42}"/>
@@ -53,14 +62,45 @@
                                         </Button>
                                         <!--Title-->
                                         <Viewbox Grid.Column="1" Margin="0">
-                                            <TextBlock Text="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                            <TextBlock Text="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Title, FallbackValue='WPF Application'}" Style="{StaticResource HeaderText}"/>
                                         </Viewbox>
-                                    </Grid>
-                                    <Grid Grid.Column="2" Grid.Row="2">
-                                        <StackPanel>
-                                            <TextBlock Text="1:03:01" FontSize="80"/>
+                                        <!--Window buttons-->
+                                        <StackPanel Grid.Column="2" Orientation="Horizontal">
+                                            <Button Style="{StaticResource WindoControlButton}" Command="{Binding MinimizeCommand}">
+                                                <Image Source="/Images/Icons/icons8-minimizar-la-ventana-48.png"/>
+                                            </Button>
+                                            <Button Style="{StaticResource WindoControlButton}" Command="{Binding MaximizeCommand}">
+                                                <Image Source="/Images/Icons/icons8-maximizar-la-ventana-filled-48.png"/>
+                                            </Button>
+                                            <Button Style="{StaticResource WindoCloseControlButton}" Command="{Binding CloseCommand}">
+                                                <Image Source="/Images/Icons/icons8-eliminar-filled-48.png"/>
+                                            </Button>
                                         </StackPanel>
                                     </Grid>
+
+                                    <Border Grid.Row="1" Height="10" BorderThickness="0 0.5 0 0">
+                                        <!--Underline-->
+                                        <Border.BorderBrush>
+                                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                                <GradientStop Color="{StaticResource BackgroundLight}" Offset="0.0"/>
+                                                <GradientStop Color="{StaticResource ForegroundMain}" Offset="0.5"/>
+                                                <GradientStop Color="{StaticResource BackgroundLight}" Offset="1.0"/>
+                                            </LinearGradientBrush>
+                                        </Border.BorderBrush>
+                                        
+                                        <!--Dropshadow-->
+                                        <Border.Background>
+                                            <LinearGradientBrush StartPoint="1,0" EndPoint="0,1" Opacity="0.75" SpreadMethod="Reflect">
+                                                <GradientStop Color="{StaticResource ForegroundLight}" Offset="0.0"/>
+                                                <GradientStop Color="{StaticResource CaptionShadow}" Offset="0.5"/>
+                                                <GradientStop Color="{StaticResource ForegroundLight}" Offset="1.0"/>
+                                            </LinearGradientBrush>
+                                        </Border.Background>
+                                    </Border>
+                                    <!--Page content-->
+                                    <Border Grid.Row="2" Padding="{Binding InnerContentpadding}">
+                                        <ContentPresenter Content="{TemplateBinding Content}"/>
+                                    </Border>
                                 </Grid>
                             </Grid>
                         </Border>
@@ -78,4 +118,8 @@
                       CornerRadius="0"
                       />
     </WindowChrome.WindowChrome>
+    <Grid>
+
+        <Label Content="1:03:01" FontSize="80"/>
+    </Grid>
 </Window>

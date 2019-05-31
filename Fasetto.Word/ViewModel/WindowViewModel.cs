@@ -127,6 +127,11 @@ namespace Fasetto.Word
         public Thickness OuterMarginSizeThickness { get { return new Thickness(OuterMarginSize); } }
 
         /// <summary>
+        /// The padding of the inner content of the main window
+        /// </summary>
+        public Thickness InnerContentPadding { get { return new Thickness(ResizeBorder); } }
+
+        /// <summary>
         /// The height of the caption bar
         /// </summary>
         public int CaptionHeight { get; set; } = 42;

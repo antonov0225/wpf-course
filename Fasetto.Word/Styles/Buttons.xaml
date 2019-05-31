@@ -27,4 +27,26 @@
         <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
         <Setter Property="Padding" Value="10"/>
     </Style>
+
+    <!--Window control buttons-->
+    <Style TargetType="{x:Type Button}" x:Key="WindoControlButton" BasedOn="{StaticResource Hoverless}">
+        <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
+        <Setter Property="Padding" Value="10"/>
+        
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource BackgroundLightBrush}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--Window controls close button-->
+    <Style TargetType="{x:Type Button}" x:Key="WindoCloseControlButton" BasedOn="{StaticResource WindoControlButton}">
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="Red"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 </ResourceDictionary>
