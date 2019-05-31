@@ -118,8 +118,8 @@
                       CornerRadius="0"
                       />
     </WindowChrome.WindowChrome>
-    <Grid>
+    <Grid Background="{StaticResource BackgroundVeryLightBrush}">
 
-        <Label Content="1:03:01" FontSize="80"/>
+        <TextBlock Text="1:03:01" FontSize="80"/>
     </Grid>
 </Window>
