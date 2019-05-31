@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace FileExplorer
+namespace Fasetto.Word
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -23,7 +23,7 @@ namespace FileExplorer
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new DirectoryStructureViewModel();
+            DataContext = new WindowViewModel(this);
         }
     }
 }
